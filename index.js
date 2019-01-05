@@ -9,7 +9,15 @@ recognition.onresult = event => {
       );
       console.log(word);
       if (word.match(/ハローココチャン/)) {
-        console.log("ココだよ！");
+        fetch("http://localhost:3000/api/robots/servoBot/commands/move", {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+          .then(function(response) {
+            console.log(response);
+          })
+          .catch(error => console.error(error));
       }
     }
   }
