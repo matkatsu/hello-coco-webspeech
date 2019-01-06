@@ -9,15 +9,17 @@ recognition.onresult = event => {
       );
       console.log(word);
       if (word.match(/ハローココチャン/)) {
-        fetch("http://localhost:3000/api/robots/servoBot/commands/move", {
-          headers: {
-            "Content-Type": "application/json"
-          }
+        axios({
+          method: "get",
+          url: "http://localhost:3000/api/robots/servoBot/commands/move",
+          headers: { "Content-Type": "application/json" }
         })
           .then(function(response) {
             console.log(response);
           })
-          .catch(error => console.error(error));
+          .catch(function(error) {
+            console.log(error);
+          });
       }
     }
   }
